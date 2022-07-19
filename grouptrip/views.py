@@ -27,28 +27,6 @@ def createUser(request):
             user = User.objects.filter(username=serializer.data['username']).first()
             token = Token.objects.get(user=user)
             print(token)
-            # data = {
-            #     'Messages': [
-            #         {
-            #             "From": {
-            #                 "Email": "kbrien11@gmail.com",
-            #                 "Name": "Keith"
-            #             },
-            #             "To": [
-            #                 {
-            #                     "Email": email,
-            #                     "Name": first_name
-            #                 }
-            #             ],
-            #             "Subject": "Thank you for registering",
-            #             "TextPart": "My first Mailjet email",
-            #             "HTMLPart": "<h3> Hi {}, thank you for signing up. Feel free to create a league or join an existing one. Goodluck on your boxes".format(str(first_name))
-            #
-            #         }
-            #     ]
-            # }
-            # result = mailjet.send.create(data=data)
-            # print(result.json)
             return Response({"data":serializer.data, "token":token.key})
         else:
             return Response({"error":"errro"})
