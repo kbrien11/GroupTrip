@@ -16,7 +16,16 @@ class Plan(models.Model):
     type = models.CharField(max_length=30, default="")
     time = models.CharField(max_length=30,default="")
     group_name = models.CharField(max_length=40,default="")
-
+    
+    
+class Itinerary(models.Model):
+    user_pk = models.ForeignKey(User,on_delete=models.CASCADE, default="")
+    plan_id = models.ForeignKey(Plan,on_delete=models.CASCADE, default="")
+    time = models.CharField(max_length=30,default="")
+    date = models.DateTimeField(auto_now=True)
+    title = models.CharField(default="",max_length=40)
+    description = models.CharField(default="", max_length=30)
+    type = models.CharField(max_length=30, default="")
 
 class Message(models.Model):
     username = models.CharField(default="",max_length=30)
