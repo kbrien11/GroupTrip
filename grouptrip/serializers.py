@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
-from .models import Plan,Message,Group
+from .models import Plan,Message,Group,Itinerary
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -22,6 +22,11 @@ class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
         fields = ['id','date','title','description','type','time','group_name']
+        
+class ItinerarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Itinerary
+        fields = ['id','date','title','description','type','time','user_pk','plan_id']
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
